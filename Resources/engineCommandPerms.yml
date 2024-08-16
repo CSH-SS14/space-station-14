@@ -142,5 +142,6 @@
   - uploadfolder
 
 - Commands:
+  - adminwho
   - "|"
   - oldhelp

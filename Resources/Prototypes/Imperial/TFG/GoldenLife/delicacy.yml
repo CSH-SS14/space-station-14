@@ -1,0 +1,98 @@
+# Edible rag
+- type: entity
+  id: PresentableRag
+  parent: BaseItem
+  name: delicious rag
+  description: A delicacy for representatives of the moth race!
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/presentableRag.rsi
+    state: HQrag
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/presentableRag.rsi
+    state: HQrag
+    size: Small
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+    - ClothMade
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialDurathread1
+      amount: 1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+  - type: StaticPrice
+    price: 499
+#Edible rag END
+
+# Golden Pizza
+- type: entity
+  id: FoodPizzaGolden
+  parent: FoodPizzaBase
+  name: golden pizza
+  description: You are rich, crazy bastartd.
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenPizza.rsi
+    layers:
+    - state: goldenPizza
+  - type: FlavorProfile
+    flavors:
+      - gold-pizza
+  - type: SliceableFood
+    slice: FoodPizzaGoldenSlice
+  - type: StaticPrice
+    price: 888
+
+- type: entity
+  id: FoodPizzaGoldenSlice
+  parent: FoodPizzaSliceBase
+  name: slice of golden pizza
+  description: A slice of sientist's heart attack.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - gold-pizza
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenPizza.rsi
+    layers:
+    - state: goldenPizzaSlice
+  - type: StaticPrice
+    price: 111
+#Golden Pizza END
+
+- type: entity
+  id: CaviarBowlEmpty
+  parent: BaseItem
+  name: empty caviar bowl
+  description: This bowl from caviar is now empty. Sadly.
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/TFG/GoldenLife/goldenCaviar.rsi
+    state: empty
+  - type: Item
+    sprite: Imperial/TFG/GoldenLife/goldenCaviar.rsi
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - Trash
+  - type: StaticPrice
+    price: 499
+#Golden Caviar END

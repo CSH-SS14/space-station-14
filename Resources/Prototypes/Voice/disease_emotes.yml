@@ -19,11 +19,9 @@
   chatTriggers:
     - cough
     - coughs
-    - coughed
     # Corvax-Localization-Start
     - кашель
     - кашляет
-    - кашлянул
     # Corvax-Localization-End
 
 - type: emote

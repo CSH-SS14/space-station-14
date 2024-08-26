@@ -1,24 +1,12 @@
 - type: entity
+  abstract: true
   parent: BaseItem
-  id: LogicEmptyCircuit
-  name: empty circuit
-  description: Something seems to be missing.
+  id: BaseLogicItem
   components:
   - type: Sprite
     sprite: Objects/Devices/gates.rsi
-    layers:
-    - state: base
   - type: Anchorable
   - type: Rotatable
-  - type: Construction
-    graph: LogicGate
-    node: empty
-
-- type: entity
-  abstract: true
-  parent: LogicEmptyCircuit
-  id: BaseLogicItem
-  components:
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
@@ -35,7 +23,6 @@
   - type: Sprite
     layers:
     - state: base
-    - state: logic
     - state: or
       map: [ "enum.LogicGateLayers.Gate" ]
   - type: LogicGate
@@ -51,6 +38,7 @@
     lastSignals:
       Output: false
   - type: Construction
+    graph: LogicGate
     node: logic_gate
   - type: Appearance
   - type: GenericVisualizer
@@ -136,9 +124,7 @@
   description: Splits rising and falling edges into unique pulses and detects how edgy you are.
   components:
   - type: Sprite
-    layers:
-    - state: base
-    - state: edge_detector
+    state: edge_detector
   - type: EdgeDetector
   - type: DeviceLinkSink
     ports:
@@ -151,6 +137,7 @@
       OutputHigh: false
       OutputLow: false
   - type: Construction
+    graph: LogicGate
     node: edge_detector
 
 - type: entity
@@ -160,9 +147,7 @@
   description: Generates signals in response to powernet changes. Can be cycled between cable voltages.
   components:
   - type: Sprite
-    layers:
-    - state: base
-    - state: power_sensor
+    state: power_sensor
   - type: PowerSensor
   - type: PowerSwitchable
     examineText: power-sensor-voltage-examine
@@ -198,25 +183,5 @@
       PowerCharging: false
       PowerDischarging: false
   - type: Construction
+    graph: LogicGate
     node: power_sensor
-
-- type: entity
-  parent: BaseLogicItem
-  id: MemoryCell
-  name: memory cell
-  description: A D-Latch circuit that stores a signal which can be changed depending on input and enable ports.
-  components:
-  - type: Sprite
-    layers:
-    - state: base
-    - state: memory_cell
-  - type: MemoryCell
-  - type: DeviceLinkSink
-    ports:
-    - MemoryInput
-    - MemoryEnable
-  - type: DeviceLinkSource
-    ports:
-    - Output
-  - type: Construction
-    node: memory_cell

@@ -191,6 +191,6 @@ namespace Content.Server.GameTicking
             => UserHasJoinedGame(session.UserId);
 
         public bool UserHasJoinedGame(NetUserId userId)
-            => PlayerGameStatuses.ContainsKey(userId) && PlayerGameStatuses[userId] == PlayerGameStatus.JoinedGame;
+            => PlayerGameStatuses[userId] == PlayerGameStatus.JoinedGame;
     }
 }

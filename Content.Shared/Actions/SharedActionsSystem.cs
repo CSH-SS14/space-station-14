@@ -44,8 +44,6 @@ public abstract class SharedActionsSystem : EntitySystem
         SubscribeLocalEvent<WorldTargetActionComponent, ComponentShutdown>(OnActionShutdown);
         SubscribeLocalEvent<EntityWorldTargetActionComponent, ComponentShutdown>(OnActionShutdown);
 
-        SubscribeLocalEvent<ActionsComponent, ActionComponentChangeEvent>(OnActionCompChange);
-        SubscribeLocalEvent<ActionsComponent, RelayedActionComponentChangeEvent>(OnRelayActionCompChange);
         SubscribeLocalEvent<ActionsComponent, DidEquipEvent>(OnDidEquip);
         SubscribeLocalEvent<ActionsComponent, DidEquipHandEvent>(OnHandEquipped);
         SubscribeLocalEvent<ActionsComponent, DidUnequipEvent>(OnDidUnequip);
@@ -491,6 +489,12 @@ public abstract class SharedActionsSystem : EntitySystem
                 break;
         }
 
+        if (performEvent != null)
+        {
+            performEvent.Performer = user;
+            performEvent.Action = actionEnt;
+        }
+
         // All checks passed. Perform the action!
         PerformAction(user, component, actionEnt, action, performEvent, curTime);
     }
@@ -636,8 +640,6 @@ public abstract class SharedActionsSystem : EntitySystem
             // This here is required because of client-side prediction (RaisePredictiveEvent results in event re-use).
             actionEvent.Handled = false;
             var target = performer;
-            actionEvent.Performer = performer;
-            actionEvent.Action = (actionId, action);
 
             if (!action.RaiseOnUser && action.Container != null && !HasComp<MindComponent>(action.Container))
                 target = action.Container.Value;
@@ -650,14 +652,10 @@ public abstract class SharedActionsSystem : EntitySystem
             return; // no interaction occurred.
 
         // play sound, reduce charges, start cooldown, and mark as dirty (if required).
-        if (actionEvent?.Toggle == true)
-        {
-            action.Toggled = !action.Toggled;
-        }
 
-        _audio.PlayPredicted(action.Sound, performer, predicted ? performer : null);
+        _audio.PlayPredicted(action.Sound, performer,predicted ? performer : null);
 
-        var dirty = toggledBefore != action.Toggled;
+        var dirty = toggledBefore == action.Toggled;
 
         if (action.Charges != null)
         {
@@ -674,11 +672,10 @@ public abstract class SharedActionsSystem : EntitySystem
             action.Cooldown = (curTime, curTime + action.UseDelay.Value);
         }
 
-        if (dirty)
-        {
-            Dirty(actionId, action);
-            UpdateAction(actionId, action);
-        }
+        Dirty(actionId, action);
+
+        if (dirty && component != null)
+            Dirty(performer, component);
 
         var ev = new ActionPerformedEvent(performer);
         RaiseLocalEvent(actionId, ref ev);
@@ -925,7 +922,7 @@ public abstract class SharedActionsSystem : EntitySystem
                               || !comp.Actions.Contains(actionId.Value));
 
             if (!GameTiming.ApplyingState)
-                Log.Warning($"Attempted to remove an action {ToPrettyString(actionId)} from an entity that it was never attached to: {ToPrettyString(performer)}. Trace: {Environment.StackTrace}");
+                Log.Error($"Attempted to remove an action {ToPrettyString(actionId)} from an entity that it was never attached to: {ToPrettyString(performer)}. Trace: {Environment.StackTrace}");
             return;
         }
 
@@ -960,63 +957,7 @@ public abstract class SharedActionsSystem : EntitySystem
         // See client-side system for UI code.
     }
 
-    public bool ValidAction(BaseActionComponent action, bool canReach = true)
-    {
-        if (!action.Enabled)
-            return false;
-
-        if (action.Charges.HasValue && action.Charges <= 0)
-            return false;
-
-        var curTime = GameTiming.CurTime;
-        if (action.Cooldown.HasValue && action.Cooldown.Value.End > curTime)
-            return false;
-
-        return canReach || action is BaseTargetActionComponent { CheckCanAccess: false };
-    }
-
     #endregion
-
-    private void OnRelayActionCompChange(Entity<ActionsComponent> ent, ref RelayedActionComponentChangeEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        var ev = new AttemptRelayActionComponentChangeEvent();
-        RaiseLocalEvent(ent.Owner, ref ev);
-        var target = ev.Target ?? ent.Owner;
-
-        args.Handled = true;
-        args.Toggle = true;
-
-        if (!args.Action.Comp.Toggled)
-        {
-            EntityManager.AddComponents(target, args.Components);
-        }
-        else
-        {
-            EntityManager.RemoveComponents(target, args.Components);
-        }
-    }
-
-    private void OnActionCompChange(Entity<ActionsComponent> ent, ref ActionComponentChangeEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        args.Handled = true;
-        args.Toggle = true;
-        var target = ent.Owner;
-
-        if (!args.Action.Comp.Toggled)
-        {
-            EntityManager.AddComponents(target, args.Components);
-        }
-        else
-        {
-            EntityManager.RemoveComponents(target, args.Components);
-        }
-    }
 
     #region EquipHandlers
     private void OnDidEquip(EntityUid uid, ActionsComponent component, DidEquipEvent args)

@@ -313,8 +313,11 @@ public sealed class PlantHolderSystem : EntitySystem
             var displayName = Loc.GetString(component.Seed.DisplayName);
             _popup.PopupCursor(Loc.GetString("plant-holder-component-take-sample-message",
                 ("seedName", displayName)), args.User);
-            
-            DoScream(entity.Owner, component.Seed);
+
+            if (component.Seed != null && component.Seed.CanScream)
+            {
+                _audio.PlayPvs(component.Seed.ScreamSound, uid, AudioParams.Default.WithVolume(-2));
+            }
 
             if (_random.Prob(0.3f))
                 component.Sampled = true;
@@ -522,9 +525,10 @@ public sealed class PlantHolderSystem : EntitySystem
 
         var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
 
-        component.MissingGas = 0;
         if (component.Seed.ConsumeGasses.Count > 0)
         {
+            component.MissingGas = 0;
+
             foreach (var (gas, amount) in component.Seed.ConsumeGasses)
             {
                 if (environment.GetMoles(gas) < amount)
@@ -744,19 +748,6 @@ public sealed class PlantHolderSystem : EntitySystem
         return true;
     }
 
-    /// <summary>
-    /// Force do scream on PlantHolder (like plant is screaming) using seed's ScreamSound specifier (collection or soundPath)
-    /// </summary>
-    /// <returns></returns>
-    public bool DoScream(EntityUid plantholder, SeedData? seed = null)
-    {
-        if (seed == null || seed.CanScream == false)
-            return false;
-
-        _audio.PlayPvs(seed.ScreamSound, plantholder);
-        return true;
-    }
-
     public void AutoHarvest(EntityUid uid, PlantHolderComponent? component = null)
     {
         if (!Resolve(uid, ref component))
@@ -777,7 +768,8 @@ public sealed class PlantHolderSystem : EntitySystem
         component.Harvest = false;
         component.LastProduce = component.Age;
 
-        DoScream(uid, component.Seed);
+        if (component.Seed != null && component.Seed.CanScream)
+            _audio.PlayPvs(component.Seed.ScreamSound, uid, AudioParams.Default.WithVolume(-2));
 
         if (component.Seed?.HarvestRepeat == HarvestType.NoRepeat)
             RemovePlant(uid, component);

@@ -28,8 +28,6 @@ namespace Content.Server.Database
     {
         private readonly ISawmill _opsLog;
 
-        public event Action<DatabaseNotification>? OnNotificationReceived;
-
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
         public ServerDbBase(ISawmill opsLog)
         {
@@ -435,16 +433,13 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
         }
 
-        protected static async Task<ServerBanExemptFlags?> GetBanExemptionCore(
-            DbGuard db,
-            NetUserId? userId,
-            CancellationToken cancel = default)
+        protected static async Task<ServerBanExemptFlags?> GetBanExemptionCore(DbGuard db, NetUserId? userId)
         {
             if (userId == null)
                 return null;
 
             var exemption = await db.DbContext.BanExemption
-                .SingleOrDefaultAsync(e => e.UserId == userId.Value.UserId, cancellationToken: cancel);
+                .SingleOrDefaultAsync(e => e.UserId == userId.Value.UserId);
 
             return exemption?.Flags;
         }
@@ -475,11 +470,11 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
         }
 
-        public async Task<ServerBanExemptFlags> GetBanExemption(NetUserId userId, CancellationToken cancel)
+        public async Task<ServerBanExemptFlags> GetBanExemption(NetUserId userId)
         {
-            await using var db = await GetDb(cancel);
+            await using var db = await GetDb();
 
-            var flags = await GetBanExemptionCore(db, userId, cancel);
+            var flags = await GetBanExemptionCore(db, userId);
             return flags ?? ServerBanExemptFlags.None;
         }
 
@@ -1689,16 +1684,6 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             public abstract ServerDbContext DbContext { get; }
 
             public abstract ValueTask DisposeAsync();
-        }
-
-        protected void NotificationReceived(DatabaseNotification notification)
-        {
-            OnNotificationReceived?.Invoke(notification);
-        }
-
-        public virtual void Shutdown()
-        {
-
         }
     }
 }

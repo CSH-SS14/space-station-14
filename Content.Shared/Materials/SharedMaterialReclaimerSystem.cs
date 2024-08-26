@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
 using Content.Shared.Body.Components;
+using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
@@ -9,6 +10,7 @@ using Content.Shared.Examine;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -100,8 +102,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
 
         if (user != null)
         {
-            _adminLog.Add(LogType.Action,
-                LogImpact.High,
+            _adminLog.Add(LogType.Action, LogImpact.High,
                 $"{ToPrettyString(user.Value):player} destroyed {ToPrettyString(item)} in the material reclaimer, {ToPrettyString(uid)}");
         }
 
@@ -170,19 +171,13 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// <summary>
     /// Sets the Enabled field on the reclaimer.
     /// </summary>
-    public bool SetReclaimerEnabled(EntityUid uid, bool enabled, MaterialReclaimerComponent? component = null)
+    public void SetReclaimerEnabled(EntityUid uid, bool enabled, MaterialReclaimerComponent? component = null)
     {
         if (!Resolve(uid, ref component, false))
-            return true;
-
-        if (component.Broken && enabled)
-            return false;
-
+            return;
         component.Enabled = enabled;
         AmbientSound.SetAmbience(uid, enabled && component.Powered);
         Dirty(uid, component);
-
-        return true;
     }
 
     /// <summary>
@@ -194,7 +189,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
         if (HasComp<ActiveMaterialReclaimerComponent>(uid))
             return false;
 
-        return component.Powered && component.Enabled && !component.Broken;
+        return component.Powered && component.Enabled;
     }
 
     /// <summary>
@@ -205,7 +200,6 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     {
         return component.Powered &&
                component.Enabled &&
-               !component.Broken &&
                HasComp<BodyComponent>(victim) &&
                HasComp<EmaggedComponent>(uid);
     }

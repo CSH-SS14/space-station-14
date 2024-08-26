@@ -774,7 +774,6 @@
     state: closed
   objectType: Structure
   placementMode: SnapgridCenter
-  canRotate: false
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
@@ -792,7 +791,6 @@
     state: closed
   objectType: Structure
   placementMode: SnapgridCenter
-  canRotate: false
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked

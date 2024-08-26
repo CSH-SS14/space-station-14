@@ -183,44 +183,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         return mapId;
     }
 
-    /// <summary>
-    /// Generates a dungeon in the background with the specified config.
-    /// </summary>
-    /// <param name="coordinates">Coordinates to move the dungeon to afterwards. Will delete the original map</param>
-    public void GenerateDungeon(DungeonConfig gen,
-        EntityUid gridUid,
-        MapGridComponent grid,
-        Vector2i position,
-        int seed,
-        EntityCoordinates? coordinates = null)
-    {
-        var cancelToken = new CancellationTokenSource();
-        var job = new DungeonJob.DungeonJob(
-            Log,
-            DungeonJobTime,
-            EntityManager,
-            _prototype,
-            _tileDefManager,
-            _anchorable,
-            _decals,
-            this,
-            _lookup,
-            _tile,
-            _transform,
-            gen,
-            grid,
-            gridUid,
-            seed,
-            position,
-            coordinates,
-            cancelToken.Token);
-
-        _dungeonJobs.Add(job, cancelToken);
-        _dungeonJobQueue.EnqueueJob(job);
-    }
-
-    public async Task<List<Dungeon>> GenerateDungeonAsync(
-        DungeonConfig gen,
+    public void GenerateDungeon(DungeonConfigPrototype gen,
         EntityUid gridUid,
         MapGridComponent grid,
         Vector2i position,
@@ -244,7 +207,37 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             gridUid,
             seed,
             position,
-            null,
+            cancelToken.Token);
+
+        _dungeonJobs.Add(job, cancelToken);
+        _dungeonJobQueue.EnqueueJob(job);
+    }
+
+    public async Task<List<Dungeon>> GenerateDungeonAsync(
+        DungeonConfigPrototype gen,
+        EntityUid gridUid,
+        MapGridComponent grid,
+        Vector2i position,
+        int seed)
+    {
+        var cancelToken = new CancellationTokenSource();
+        var job = new DungeonJob.DungeonJob(
+            Log,
+            DungeonJobTime,
+            EntityManager,
+            _prototype,
+            _tileDefManager,
+            _anchorable,
+            _decals,
+            this,
+            _lookup,
+            _tile,
+            _transform,
+            gen,
+            grid,
+            gridUid,
+            seed,
+            position,
             cancelToken.Token);
 
         _dungeonJobs.Add(job, cancelToken);

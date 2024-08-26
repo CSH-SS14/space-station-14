@@ -24,12 +24,6 @@ public sealed class CallSpecForcesCommand : IConsoleCommand
     {
         var specForceSystem = _entManager.System<SpecForcesSystem>();
 
-        if (!_prototypes.TryIndex<SpecForceTeamPrototype>(args[0], out _))
-        {
-            shell.WriteLine($"Спецсилы с ID {args[0]} не существует.");
-            return;
-        }
-
         switch (args.Length)
         {
             case 1:

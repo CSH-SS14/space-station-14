@@ -1,4 +1,3 @@
-using Content.Shared.Backmen.Input;
 using Content.Shared.Input;
 using Robust.Shared.Input;
 
@@ -75,9 +74,6 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.OpenBackpack);
             human.AddFunction(ContentKeyFunctions.OpenBelt);
             human.AddFunction(ContentKeyFunctions.MouseMiddle);
-            human.AddFunction(ContentKeyFunctions.RotateObjectClockwise);
-            human.AddFunction(ContentKeyFunctions.RotateObjectCounterclockwise);
-            human.AddFunction(ContentKeyFunctions.FlipObject);
             human.AddFunction(ContentKeyFunctions.ArcadeUp);
             human.AddFunction(ContentKeyFunctions.ArcadeDown);
             human.AddFunction(ContentKeyFunctions.ArcadeLeft);
@@ -124,16 +120,6 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.OpenDecalSpawnWindow);
             common.AddFunction(ContentKeyFunctions.OpenAdminMenu);
             common.AddFunction(ContentKeyFunctions.OpenGuidebook);
-
-
-            CMFunctions(contexts);
-        }
-
-        private static void CMFunctions(IInputContextContainer contexts)
-        {
-            var human = contexts.GetContext("human");
-            human.AddFunction(CMKeyFunctions.CMUniqueAction);
         }
     }
 }
-

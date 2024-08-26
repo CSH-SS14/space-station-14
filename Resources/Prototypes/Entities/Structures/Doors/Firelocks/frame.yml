@@ -52,3 +52,5 @@
         layer:
         - HighImpassable
         - MidImpassable
+  - type: Transform
+    noRot: true

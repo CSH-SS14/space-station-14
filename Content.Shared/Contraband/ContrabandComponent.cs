@@ -7,14 +7,13 @@ namespace Content.Shared.Contraband;
 /// <summary>
 /// This is used for marking entities that are considered 'contraband' IC and showing it clearly in examine.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(ContrabandSystem)), AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, Access(typeof(ContrabandSystem))]
 public sealed partial class ContrabandComponent : Component
 {
     /// <summary>
     ///     The degree of contraband severity this item is considered to have.
     /// </summary>
     [DataField]
-    [AutoNetworkedField]
     public ProtoId<ContrabandSeverityPrototype> Severity = "Restricted";
 
     /// <summary>
@@ -23,6 +22,5 @@ public sealed partial class ContrabandComponent : Component
     ///     If null, no departments are allowed to use this.
     /// </summary>
     [DataField]
-    [AutoNetworkedField]
     public HashSet<ProtoId<DepartmentPrototype>>? AllowedDepartments = ["Security"];
 }

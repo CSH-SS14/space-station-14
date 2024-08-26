@@ -47,7 +47,7 @@
         sound:
           collection: MetalBreak
   - type: StaticPrice
-    price: 50
+    price: 10
 
 #Starts unanchored, cannot be rotated while anchored
 - type: entity
@@ -349,7 +349,6 @@
   - type: Construction
     graph: Seat
     node: chairFolding
-  - type: DamageExaminable
 
 - type: entity
   parent: ChairFolding
@@ -401,4 +400,4 @@
             min: 2
             max: 4
   - type: StaticPrice
-    price: 50
+    price: 20

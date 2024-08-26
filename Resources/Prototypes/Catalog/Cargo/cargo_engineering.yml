@@ -144,6 +144,6 @@
     sprite: Structures/Piping/Atmospherics/Portable/portable_sheater.rsi
     state: sheaterOff
   product: CrateEngineeringSpaceHeater
-  cost: 350
+  cost: 300
   category: cargoproduct-category-name-engineering
   group: market

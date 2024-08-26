@@ -16,26 +16,23 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Database
 {
-    public sealed partial class ServerDbPostgres : ServerDbBase
+    public sealed class ServerDbPostgres : ServerDbBase
     {
         private readonly DbContextOptions<PostgresServerDbContext> _options;
-        private readonly ISawmill _notifyLog;
         private readonly SemaphoreSlim _prefsSemaphore;
         private readonly Task _dbReadyTask;
 
         private int _msLag;
 
-        public ServerDbPostgres(DbContextOptions<PostgresServerDbContext> options,
-            string connectionString,
+        public ServerDbPostgres(
+            DbContextOptions<PostgresServerDbContext> options,
             IConfigurationManager cfg,
-            ISawmill opsLog,
-            ISawmill notifyLog)
+            ISawmill opsLog)
             : base(opsLog)
         {
             var concurrency = cfg.GetCVar(CCVars.DatabasePgConcurrency);
 
             _options = options;
-            _notifyLog = notifyLog;
             _prefsSemaphore = new SemaphoreSlim(concurrency, concurrency);
 
             _dbReadyTask = Task.Run(async () =>
@@ -52,8 +49,6 @@ namespace Content.Server.Database
             });
 
             cfg.OnValueChanged(CCVars.DatabasePgFakeLag, v => _msLag = v, true);
-
-            InitNotificationListener(connectionString);
         }
 
         #region Ban
@@ -219,8 +214,7 @@ namespace Content.Server.Database
                 ban.Reason,
                 ban.Severity,
                 aUid,
-                unbanDef,
-                ban.ExemptFlags);
+                unbanDef);
         }
 
         private static ServerUnbanDef? ConvertUnban(ServerUnban? unban)
@@ -257,8 +251,7 @@ namespace Content.Server.Database
                 ExpirationTime = serverBan.ExpirationTime?.UtcDateTime,
                 RoundId = serverBan.RoundId,
                 PlaytimeAtNote = serverBan.PlaytimeAtNote,
-                PlayerUserId = serverBan.UserId?.UserId,
-                ExemptFlags = serverBan.ExemptFlags
+                PlayerUserId = serverBan.UserId?.UserId
             });
 
             await db.PgDbContext.SaveChangesAsync();

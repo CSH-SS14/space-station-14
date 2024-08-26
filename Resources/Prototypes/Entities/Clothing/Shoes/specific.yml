@@ -109,14 +109,12 @@
   - type: Clothing
     sprite: Clothing/Shoes/Specific/galoshes.rsi
   - type: NoSlip
-  - type: SlowedOverSlippery
-    slowdownModifier: 0.7
-  - type: SpeedModifierContactCapClothing
-    maxContactSprintSlowdown: 0.7
-    maxContactWalkSlowdown: 0.7
+  - type: ClothingSpeedModifier # Corvax-MRP
+    walkModifier: 0.9
+    sprintModifier: 0.9
 
 - type: entity
-  parent: [ClothingShoesBaseButcherable, BaseMajorContraband]
+  parent: ClothingShoesBaseButcherable
   id: ClothingShoesSpaceNinja
   name: space ninja shoes
   description: A pair of nano-enhanced boots with built-in magnetic suction cups.
@@ -257,7 +255,7 @@
         - Scientist
         - Borg
 # Corvax-HiddenDesc-End
-
+          
 - type: entity
   parent: ClothingShoesClown
   id: ClothingShoesJester

@@ -482,6 +482,15 @@
     Glass: 500
 
 - type: latheRecipe
+  id: MaterialReclaimerMachineCircuitboard
+  result: MaterialReclaimerMachineCircuitboard
+  category: Circuitry
+  completetime: 4
+  materials:
+    Steel: 100
+    Glass: 500
+
+- type: latheRecipe
   id: OreProcessorMachineCircuitboard
   result: OreProcessorMachineCircuitboard
   category: Circuitry
@@ -958,7 +967,7 @@
      Steel: 100
      Glass: 500
      Gold: 100
-
+ 
 - type: latheRecipe
   id: JukeboxCircuitBoard
   result: JukeboxCircuitBoard

@@ -102,10 +102,3 @@
   icon:
     sprite: /Textures/Backmen/Icons/jobicon.rsi
     state: Nanotrasenjanitor
-
-- type: jobIcon
-  parent: JobIcon
-  id: JobIconBlueShield
-  icon:
-    sprite: /Textures/Backmen/Icons/jobicon.rsi
-    state: blueshield

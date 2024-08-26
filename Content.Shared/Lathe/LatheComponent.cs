@@ -36,12 +36,6 @@ namespace Content.Shared.Lathe
         [DataField]
         public string? ReagentOutputSlotId;
 
-        /// <summary>
-        /// The default amount that's displayed in the UI for selecting the print amount.
-        /// </summary>
-        [DataField, AutoNetworkedField]
-        public int DefaultProductionAmount = 1;
-
         #region Visualizer info
         [DataField]
         public string? IdleState;
@@ -83,7 +77,7 @@ namespace Content.Shared.Lathe
 
         public bool getUnavailable;
 
-        public HashSet<ProtoId<LatheRecipePrototype>> Recipes = new();
+        public List<ProtoId<LatheRecipePrototype>> Recipes = new();
 
         public LatheGetRecipesEvent(EntityUid lathe, bool forced)
         {

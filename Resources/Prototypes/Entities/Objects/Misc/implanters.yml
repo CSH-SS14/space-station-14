@@ -72,8 +72,6 @@
     # go wild with sentient chairs with macrobombs
     whitelist: null
     blacklist: null
-    implantTime: 5
-    drawTime: 5
 
 - type: entity
   id: BaseImplantOnlyImplanter
@@ -97,7 +95,6 @@
 - type: entity
   id: BaseImplantOnlyImplanterSyndi
   parent: [BaseImplantOnlyImplanter, BaseSyndicateContraband]
-  name: syndicate implanter
   description: A compact disposable syringe exclusively designed for the injection of subdermal implants.
   abstract: true
   components:
@@ -131,7 +128,7 @@
 
 - type: entity
   id: SadTromboneImplanter
-  suffix: sad trombone
+  name: sad trombone implanter
   parent: BaseImplantOnlyImplanter
   components:
     - type: Implanter
@@ -157,7 +154,7 @@
 
 - type: entity
   id: LightImplanter
-  suffix: light
+  name: light implanter
   parent: BaseImplantOnlyImplanter
   components:
     - type: Implanter
@@ -183,7 +180,7 @@
 
 - type: entity
   id: BikeHornImplanter
-  suffix: bike horn
+  name: bike horn implanter
   parent: BaseImplantOnlyImplanter
   components:
     - type: Implanter
@@ -211,8 +208,8 @@
 
 - type: entity
   id: TrackingImplanter
-  suffix: tracking
-  parent: BaseImplantOnlyImplanter
+  name: tracking implanter
+  parent: [ BaseImplantOnlyImplanter, BaseRestrictedContraband]
   components:
     - type: Implanter
       implant: TrackingImplant
@@ -239,7 +236,7 @@
 
 - type: entity
   id: StorageImplanter
-  suffix: storage
+  name: storage implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
     - type: Implanter
@@ -265,7 +262,7 @@
 
 - type: entity
   id: FreedomImplanter
-  suffix: freedom
+  name: freedom implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
     - type: Implanter
@@ -291,7 +288,7 @@
 
 - type: entity
   id: UplinkImplanter
-  suffix: uplink
+  name: uplink implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter
@@ -317,7 +314,7 @@
 
 - type: entity
   id: EmpImplanter
-  suffix: EMP
+  name: EMP implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
     - type: Implanter
@@ -343,7 +340,7 @@
 
 - type: entity
   id: ScramImplanter
-  suffix: scram
+  name: scram implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
     - type: Implanter
@@ -369,7 +366,7 @@
 
 - type: entity
   id: DnaScramblerImplanter
-  suffix: DNA scrambler
+  name: DNA scrambler implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
     - type: Implanter
@@ -397,7 +394,7 @@
 
 - type: entity
   id: MicroBombImplanter
-  suffix: micro-bomb
+  name: micro-bomb implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
     - type: Implanter
@@ -423,7 +420,7 @@
 
 - type: entity
   id: MacroBombImplanter
-  suffix: macro-bomb
+  name: macro-bomb implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
     - type: Implanter
@@ -449,7 +446,7 @@
 
 - type: entity
   id: DeathRattleImplanter
-  suffix: death rattle
+  name: death rattle implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
     - type: Implanter
@@ -475,7 +472,7 @@
 
 - type: entity
   id: DeathAcidifierImplanter
-  suffix: death acidifier
+  name: death acidifier implanter
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter
@@ -503,8 +500,8 @@
 
 - type: entity
   id: MindShieldImplanter
-  suffix: mindshield
-  parent: BaseImplantOnlyImplanter
+  name: mindshield implanter
+  parent: [ BaseImplantOnlyImplanter, BaseSecurityCommandContraband]
   components:
     - type: Implanter
       implant: MindShieldImplant

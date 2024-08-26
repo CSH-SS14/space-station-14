@@ -138,9 +138,6 @@
           steps:
             - tool: Anchoring
               doAfter: 0.25
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
 
     - node: FirelockGlassFrame
       edges:
@@ -171,9 +168,6 @@
           steps:
             - tool: Anchoring
               doAfter: 1
-          completed:
-            - !type:SnapToGrid
-              southRotation: true
 
     - node: FirelockEdge
       entity: FirelockEdge

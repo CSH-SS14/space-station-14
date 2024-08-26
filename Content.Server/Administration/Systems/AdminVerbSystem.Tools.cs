@@ -736,11 +736,11 @@ public sealed partial class AdminVerbSystem
         }
     }
 
-    private void RefillEquippedTanks(EntityUid target, Gas gasType)
+    private void RefillEquippedTanks(EntityUid target, Gas plasma)
     {
         foreach (var held in _inventorySystem.GetHandOrInventoryEntities(target))
         {
-            RefillGasTank(held, gasType);
+            RefillGasTank(held, Gas.Plasma);
         }
     }
 

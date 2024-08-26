@@ -1,5 +1,6 @@
 using System.Threading;
 using Content.Client.Jerry.DiscordAuth.DiscordGui;
+using Content.Client.Jerry.DiscordAuth;
 using Content.Shared.Jerry.DiscordAuth;
 using Robust.Client.State;
 using Robust.Client.UserInterface;

@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Shared._Jerry.DiscordAuth;
+using Content.Shared.Jerry.DiscordAuth;
 using Lidgren.Network;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
@@ -13,7 +13,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Timer = Robust.Shared.Timing.Timer;
 
-namespace Content.Server._Jerry;
+namespace Content.Server.Jerry;
 
 public sealed class DiscordAuthManager : IPostInjectInit
 {

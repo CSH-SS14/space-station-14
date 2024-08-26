@@ -2,7 +2,7 @@ using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Jerry.DiscordAuth;
+namespace Content.Shared.Jerry.DiscordAuth;
 
 public sealed class MsgDiscordAuthRequired : NetMessage
 {

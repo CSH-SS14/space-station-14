@@ -1,8 +1,8 @@
-using Content.Shared._Jerry.DiscordAuth;
+using Content.Shared.Jerry.DiscordAuth;
 using Robust.Client.State;
 using Robust.Shared.Network;
 
-namespace Content.Client._Jerry.DiscordAuth;
+namespace Content.Client.Jerry.DiscordAuth;
 
 public sealed class DiscordAuthManager
 {

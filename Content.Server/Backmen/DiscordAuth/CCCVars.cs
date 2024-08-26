@@ -1,6 +1,6 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Server._Jerry.CCCVars;
+namespace Content.Server.Jerry.CCCVars;
 [CVarDefs]
 public static class CCCVars
 {

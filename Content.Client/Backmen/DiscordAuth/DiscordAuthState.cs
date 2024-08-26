@@ -1,12 +1,12 @@
 using System.Threading;
-using Content.Client._Jerry.DiscordAuth.DiscordGui;
-using Content.Shared._Jerry.DiscordAuth;
+using Content.Client.Jerry.DiscordAuth.DiscordGui;
+using Content.Shared.Jerry.DiscordAuth;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Shared.Network;
 using Timer = Robust.Shared.Timing.Timer;
 
-namespace Content.Client._Jerry.DiscordAuth;
+namespace Content.Client.Jerry.DiscordAuth;
 
 public sealed class DiscordAuthState : State
 {

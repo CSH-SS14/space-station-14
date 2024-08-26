@@ -1,42 +1,24 @@
-﻿using System.IO;
-using System.Threading;
-using Content.Shared.Backmen.DiscordAuth;
-using Robust.Client.Graphics;
-using Robust.Client.ResourceManagement;
+using Content.Shared._Jerry.DiscordAuth;
 using Robust.Client.State;
-using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
-using Robust.Shared.Utility;
-using Timer = Robust.Shared.Timing.Timer;
 
-namespace Content.Client.Backmen.DiscordAuth;
+namespace Content.Client._Jerry.DiscordAuth;
 
-public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Client.IClientDiscordAuthManager
+public sealed class DiscordAuthManager
 {
-    [Dependency] private readonly IClientNetManager _netManager = default!;
-    [Dependency] private readonly IStateManager _stateManager = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly IStateManager _state = default!;
 
-    public string AuthUrl { get; private set; } = string.Empty;
-    public Texture? Qrcode { get; private set; }
+    public string AuthLink = default!;
 
     public void Initialize()
     {
-        _netManager.RegisterNetMessage<MsgDiscordAuthCheck>();
-        _netManager.RegisterNetMessage<MsgDiscordAuthRequired>(OnDiscordAuthRequired);
+        _net.RegisterNetMessage<MsgDiscordAuthRequired>(OnDiscordAuthRequired);
     }
 
-    private void OnDiscordAuthRequired(MsgDiscordAuthRequired message)
+    public void OnDiscordAuthRequired(MsgDiscordAuthRequired args)
     {
-        if (_stateManager.CurrentState is not DiscordAuthState)
-        {
-            AuthUrl = message.AuthUrl;
-            if (message.QrCode.Length > 0)
-            {
-                using var ms = new MemoryStream(message.QrCode);
-                Qrcode = Texture.LoadFromPNGStream(ms);
-            }
-
-            _stateManager.RequestStateChange<DiscordAuthState>();
-        }
+        AuthLink = args.Link;
+        _state.RequestStateChange<DiscordAuthState>();
     }
 }

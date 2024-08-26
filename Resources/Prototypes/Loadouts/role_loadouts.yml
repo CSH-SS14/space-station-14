@@ -49,6 +49,7 @@
   - GroupTankHarness
   - PassengerJumpsuit
   - CommonBackpack
+  - PassengerNeck
   - PassengerFace
   - PassengerGloves
   - PassengerOuterClothing
@@ -241,6 +242,7 @@
   - MimeOuterClothing
   - Glasses
   - Medals #backmen
+  - SurvivalMime
   - Trinkets
 
 - type: roleLoadout
@@ -471,6 +473,7 @@
   - Medals #backmen
   - SurvivalSecurity
   - Trinkets
+  - SecurityStar
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
@@ -491,6 +494,7 @@
   - Medals #backmen
   - SurvivalSecurity
   - Trinkets
+  - SecurityStar
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
@@ -511,6 +515,7 @@
   - SecurityPocket2 #Backmen
   - Medals #backmen
   - Trinkets
+  - SecurityStar
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
@@ -531,6 +536,7 @@
   - Medals #backmen
   - SurvivalSecurity
   - Trinkets
+  - SecurityStar
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout

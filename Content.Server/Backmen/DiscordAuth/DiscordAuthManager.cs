@@ -1,121 +1,131 @@
-﻿using System.Net;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Shared.Backmen.CCVar;
-using Content.Shared.Backmen.DiscordAuth;
-using JetBrains.Annotations;
+using Content.Shared._Jerry.DiscordAuth;
+using Lidgren.Network;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Serialization;
+using Timer = Robust.Shared.Timing.Timer;
 
-namespace Content.Server.Backmen.DiscordAuth;
+namespace Content.Server._Jerry;
 
-public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServerDiscordAuthManager
+public sealed class DiscordAuthManager : IPostInjectInit
 {
-    [Dependency] private readonly IServerNetManager _netMgr = default!;
-    [Dependency] private readonly IPlayerManager _playerMgr = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IConfigurationManager _configuration = default!;
 
     private ISawmill _sawmill = default!;
-    private readonly HttpClient _httpClient = new();
-    private bool _isEnabled = false;
-    private string _apiUrl = string.Empty;
-    private string _apiKey = string.Empty;
 
-    /// <summary>
-    ///     Raised when player passed verification or if feature disabled
-    /// </summary>
+    private string _apiUrl = default!;
+    private string _apiKey = default!;
+    private bool _enabled = false;
+
+    private readonly HttpClient _httpClient = new();
+    private readonly Dictionary<NetUserId, DiscordUserData> _cachedDiscordUsers = new();
     public event EventHandler<ICommonSession>? PlayerVerified;
+
+    public void PostInject()
+    {
+        IoCManager.InjectDependencies(this);
+    }
 
     public void Initialize()
     {
+        _configuration.OnValueChanged(CCCVars.CCCVars.DiscordAuthEnabled, value => _enabled = value, true);
+        _configuration.OnValueChanged(CCCVars.CCCVars.DiscordApiUrl, (value) => _apiUrl = value, true);
+        _configuration.OnValueChanged(CCCVars.CCCVars.DiscordApiKey, (value) => _apiKey = value, true);
+
         _sawmill = Logger.GetSawmill("discord_auth");
+        _net.RegisterNetMessage<MsgDiscordAuthRequired>();
+        _net.RegisterNetMessage<MsgDiscordAuthCheck>(OnAuthCheck);
+        _net.Disconnect += OnDisconnect;
+        _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
 
-        _cfg.OnValueChanged(CCVars.DiscordAuthEnabled, v => _isEnabled = v, true);
-        _cfg.OnValueChanged(CCVars.DiscordAuthApiUrl, v => _apiUrl = v, true);
-        _cfg.OnValueChanged(CCVars.DiscordAuthApiKey, v => _apiKey = v, true);
-
-        _netMgr.RegisterNetMessage<MsgDiscordAuthRequired>();
-        _netMgr.RegisterNetMessage<MsgDiscordAuthCheck>(OnAuthCheck);
-
-        _playerMgr.PlayerStatusChanged += OnPlayerStatusChanged;
+        PlayerVerified += OnPlayerVerified;
     }
 
-    private async void OnAuthCheck(MsgDiscordAuthCheck message)
+    private void OnPlayerVerified(object? sender, ICommonSession e)
     {
-        var isVerified = await IsVerified(message.MsgChannel.UserId);
-        if (isVerified)
-        {
-            var session = _playerMgr.GetSessionById(message.MsgChannel.UserId);
-
-            PlayerVerified?.Invoke(this, session);
-        }
+        Timer.Spawn(0, () => _playerManager.JoinGame(e));
     }
 
-    private async void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
+    private void OnDisconnect(object? sender, NetDisconnectedArgs e)
     {
-        if (e.NewStatus != SessionStatus.Connected)
+        _cachedDiscordUsers.Remove(e.Channel.UserId);
+    }
+
+    private async void OnAuthCheck(MsgDiscordAuthCheck msg)
+    {
+        var data = await IsVerified(msg.MsgChannel.UserId);
+        if (data is null)
             return;
 
-        if (!_isEnabled)
+        var session = _playerManager.GetSessionById(msg.MsgChannel.UserId);
+        _cachedDiscordUsers.TryAdd(session.UserId, data);
+        PlayerVerified?.Invoke(this, session);
+    }
+
+    private async void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
+    {
+        if (args.NewStatus != SessionStatus.Connected)
+            return;
+
+        if (!_enabled)
         {
-            PlayerVerified?.Invoke(this, e.Session);
+            PlayerVerified?.Invoke(this, args.Session);
             return;
         }
 
-        if (e.NewStatus == SessionStatus.Connected)
+
+        var data = await IsVerified(args.Session.UserId);
+        if (data is not null)
         {
-            var isVerified = await IsVerified(e.Session.UserId);
-            if (isVerified)
-            {
-                PlayerVerified?.Invoke(this, e.Session);
-                return;
-            }
-
-            var authUrl = await GenerateAuthLink(e.Session.UserId);
-            var msg = new MsgDiscordAuthRequired() { AuthUrl = authUrl.Url, QrCode = authUrl.Qrcode };
-            e.Session.Channel.SendMessage(msg);
-        }
-    }
-
-    public async Task<DiscordGenerateLinkResponse> GenerateAuthLink(NetUserId userId, CancellationToken cancel = default)
-    {
-        _sawmill.Info($"Player {userId} requested generation Discord verification link");
-
-        var requestUrl = $"{_apiUrl}/{WebUtility.UrlEncode(userId.ToString())}?key={_apiKey}";
-        var response = await _httpClient.PostAsync(requestUrl, null, cancel);
-        if (!response.IsSuccessStatusCode)
-        {
-            var content = await response.Content.ReadAsStringAsync(cancel);
-            throw new Exception($"Verification API returned bad status code: {response.StatusCode}\nResponse: {content}");
+            _cachedDiscordUsers.TryAdd(args.Session.UserId, data);
+            PlayerVerified?.Invoke(this, args.Session);
+            return;
         }
 
-        var data = await response.Content.ReadFromJsonAsync<DiscordGenerateLinkResponse>(cancellationToken: cancel);
-        return data!;
+        var link = await GenerateLink(args.Session.UserId);
+        var message = new MsgDiscordAuthRequired() {Link = link};
+        args.Session.Channel.SendMessage(message);
     }
 
-    public async Task<bool> IsVerified(NetUserId userId, CancellationToken cancel = default)
+    public async Task<DiscordUserData?> IsVerified(NetUserId userId, CancellationToken cancel = default)
     {
         _sawmill.Debug($"Player {userId} check Discord verification");
 
-        var requestUrl = $"{_apiUrl}/{WebUtility.UrlEncode(userId.ToString())}";
+        var requestUrl = $"{_apiUrl}/check?userid={userId}&api_token={_apiKey}";
         var response = await _httpClient.GetAsync(requestUrl, cancel);
         if (!response.IsSuccessStatusCode)
-        {
-            var content = await response.Content.ReadAsStringAsync(cancel);
-            throw new Exception($"Verification API returned bad status code: {response.StatusCode}\nResponse: {content}");
-        }
-
-        var data = await response.Content.ReadFromJsonAsync<DiscordAuthInfoResponse>(cancellationToken: cancel);
-        return data!.IsLinked;
+            return null;
+        var discordData = await response.Content.ReadFromJsonAsync<DiscordUserData>(cancel);
+        return discordData;
     }
 
-    [UsedImplicitly]
-    public sealed record DiscordGenerateLinkResponse(string Url, byte[] Qrcode);
-    [UsedImplicitly]
-    private sealed record DiscordAuthInfoResponse(bool IsLinked);
+    public async Task<string> GenerateLink(NetUserId userId, CancellationToken cancel = default)
+    {
+        _sawmill.Debug($"Generating link for {userId}");
+        var requestUrl = $"{_apiUrl}/link?userid={userId}&api_token={_apiKey}";
+        var response = await _httpClient.GetAsync(requestUrl, cancel);
+        var link = await response.Content.ReadFromJsonAsync<DiscordLinkResponse>(cancel);
+        return link!.Link;
+    }
+}
+
+public sealed class DiscordUserData()
+{
+    public NetUserId UserId { get; set; }
+    public string DiscordId { get; set; } = default!;
+}
+
+public sealed class DiscordLinkResponse()
+{
+    public string Link { get; set; } = default!;
 }

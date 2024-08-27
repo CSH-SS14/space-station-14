@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Content.Corvax.Interfaces.Shared;
 using Content.Server._Jerry;
+using Content.Client._Jerry.DiscordAuth;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Player;

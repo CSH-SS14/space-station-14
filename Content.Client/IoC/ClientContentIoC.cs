@@ -1,8 +1,8 @@
-﻿using Content.Client.Administration.Managers;
+using Content.Client._Jerry.DiscordAuth;
+using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
 using Content.Client.Clickable;
-using Content.Client.Corvax.TTS;
 using Content.Client.DebugMon;
 using Content.Client.Eui;
 using Content.Client.Fullscreen;
@@ -29,11 +29,6 @@ namespace Content.Client.IoC
         public static void Register()
         {
             var collection = IoCManager.Instance!;
-            collection.Register<Content.Corvax.Interfaces.Shared.ISharedSponsorsManager,Backmen.Sponsors.SponsorsManager>(); // Corvax-Sponsors
-            collection.Register<Content.Corvax.Interfaces.Client.ISponsorWindowCreator,Backmen.Sponsors.SponsorWindowCreator>(); // Corvax-Sponsors
-            collection.Register<Content.Corvax.Interfaces.Client.IClientJoinQueueManager,Backmen.JoinQueue.JoinQueueManager>(); // Corvax-Queue
-            collection.Register<Content.Corvax.Interfaces.Client.IClientDiscordAuthManager,Backmen.DiscordAuth.DiscordAuthManager>(); // Corvax-DiscordAuth
-            collection.Register<Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager, Backmen.Sponsors.LoadoutsManager>(); // Corvax-Sponsors
 
             collection.Register<IParallaxManager, ParallaxManager>();
             collection.Register<IChatManager, ChatManager>();
@@ -57,6 +52,7 @@ namespace Content.Client.IoC
             collection.Register<ISharedPlaytimeManager, JobRequirementsManager>();
             collection.Register<MappingManager>();
             collection.Register<DebugMonitorManager>();
+            collection.Register<DiscordAuthManager>(); // Jerry-Auth
         }
     }
 }

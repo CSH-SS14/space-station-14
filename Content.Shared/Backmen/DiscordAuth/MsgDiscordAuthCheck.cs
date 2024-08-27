@@ -1,9 +1,12 @@
-using Lidgren.Network;
+﻿using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Jerry.DiscordAuth;
+namespace Content.Shared.Backmen.DiscordAuth;
 
+/// <summary>
+/// Client sends this event to force server check player Discord verification state
+/// </summary>
 public sealed class MsgDiscordAuthCheck : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.Command;

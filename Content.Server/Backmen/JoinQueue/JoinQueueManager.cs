@@ -5,7 +5,6 @@ using Content.Shared.Backmen.JoinQueue;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Prometheus;
-using Content.Server.Jerry;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -40,8 +39,7 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
     [Dependency] private readonly IConnectionManager _connectionManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
-	[Dependency] private readonly DiscordAuthManager _discordAuthManager = default!;
-    //[Dependency] private readonly Content.Client.Jerry.DiscordAuth.DiscordGui _discordAuthManager = default!;
+    [Dependency] private readonly Content.Corvax.Interfaces.Server.IServerDiscordAuthManager _discordAuthManager = default!;
 
     /// <summary>
     ///     Queue of active player sessions

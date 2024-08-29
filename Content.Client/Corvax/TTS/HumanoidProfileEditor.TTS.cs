@@ -9,7 +9,6 @@ namespace Content.Client.Lobby.UI;
 
 public sealed partial class HumanoidProfileEditor
 {
-    private ISharedSponsorsManager? _sponsorsMgr;
     private List<TTSVoicePrototype> _voiceList = new();
 
     private void InitializeVoice()
@@ -28,7 +27,6 @@ public sealed partial class HumanoidProfileEditor
 
         VoicePlayButton.OnPressed += _ => PlayPreviewTTS();
 
-        IoCManager.Instance!.TryResolveType(out _sponsorsMgr);
     }
 
     private void UpdateTTSVoicesControls()

@@ -18,7 +18,6 @@ public sealed class PlayerJoinMoveToGameEvent : EntityEventArgs
 public sealed class PlayerManagerSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -29,8 +28,7 @@ public sealed class PlayerManagerSystem : EntitySystem
 
     private void OnCleanup(RoundRestartCleanupEvent msg)
     {
-        Log.Debug("do sponsor cleanup");
-        _sponsorsManager.Cleanup();
+		
     }
 
     private void OnPlayerJoinMoveToGame(PlayerJoinMoveToGameEvent ev)

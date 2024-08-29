@@ -34,33 +34,14 @@ public sealed class GhostThemeSystem : EntitySystem
     {
         var prefGhost = _netConfigManager.GetClientCVar(args.Player.Channel, Shared.Backmen.CCVar.CCVars.SponsorsSelectedGhost);
         {
-#if DEBUG
-            if (!items.Contains(prefGhost))
-            {
-                prefGhost = "";
-            }
-#else
-#endif
+			
         }
 
         GhostThemePrototype? ghostThemePrototype = null;
         if (string.IsNullOrEmpty(prefGhost) || !_prototypeManager.TryIndex<GhostThemePrototype>(prefGhost, out ghostThemePrototype))
         {
-            if (!_sponsorsMgr.TryGetGhostTheme(args.Player.UserId, out var ghostTheme) ||
-                !_prototypeManager.TryIndex(ghostTheme, out ghostThemePrototype)
-               )
-            {
-                return;
-            }
+           
         }
-
-        foreach (var entry in ghostThemePrototype.Components.Values)
-        {
-            var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
-            comp.Owner = uid;
-            EntityManager.AddComponent(uid, comp);
-        }
-
-        EnsureComp<GhostThemeComponent>(uid).GhostTheme = ghostThemePrototype.ID;
+		
     }
 }

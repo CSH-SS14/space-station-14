@@ -6,6 +6,7 @@ using Content.Server.Afk;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
 using Content.Server.Corvax.GuideGenerator;
+using Content.Server.Corvax.TTS;
 using Content.Server.Database;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
@@ -104,8 +105,16 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<INodeGroupFactory>().Initialize();
                 IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();
                 IoCManager.Resolve<GhostKickManager>().Initialize();
+                IoCManager.Resolve<TTSManager>().Initialize(); // Corvax-TTS
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
+
+                // start-backmen: IoC
+                IoCManager.Resolve<Content.Corvax.Interfaces.Shared.ISharedSponsorsManager>().Initialize();
+                IoCManager.Resolve<Content.Corvax.Interfaces.Server.IServerDiscordAuthManager>().Initialize();
+                IoCManager.Resolve<Content.Corvax.Interfaces.Server.IServerJoinQueueManager>().Initialize();
+                IoCManager.Resolve<Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager>().Initialize();
+                // end-backmen: IoC
 
                 _voteManager.Initialize();
                 _updateManager.Initialize();
@@ -158,7 +167,9 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<GameTicker>().PostInitialize();
                 IoCManager.Resolve<IBanManager>().Initialize();
                 // start-backmen: IoC
+                IoCManager.Resolve<Content.Corvax.Interfaces.Server.IServerJoinQueueManager>().PostInitialize();
                 // end-backmen: IoC
+                IoCManager.Resolve<IConnectionManager>().PostInit();
             }
         }
 

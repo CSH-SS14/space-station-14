@@ -12,6 +12,23 @@
   minBankBalance: 50
   maxBankBalance: 400
   #end-backmen: currency
+  
+- type: job
+  id: Passenger1
+  name: Пассажир для новичков
+  description: job-description-passenger
+  playTimeTracker: JobPassanger1488
+  startingGear: PassengerGear
+  icon: "JobIconPassenger"
+  supervisors: job-supervisors-everyone
+#  access: # Corvax-MRP
+#  - Maintenance
+  #start-backmen: currency
+  minBankBalance: 50
+  maxBankBalance: 400
+  #end-backmen: currency
+  components:
+    - type: PacifiedComponent
 
 - type: startingGear
   id: PassengerGear

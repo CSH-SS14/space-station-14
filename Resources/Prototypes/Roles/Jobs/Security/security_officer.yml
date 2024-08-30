@@ -4,9 +4,8 @@
   description: job-description-security
   playTimeTracker: JobSecurityOfficer
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 36000 #10 hrs # Corvax-RoleTime
+  - !type:OverallPlaytimeRequirement
+    time: 120 # 15h # Corvax-RoleTime
   startingGear: SecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos

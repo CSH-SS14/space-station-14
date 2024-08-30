@@ -1,3 +1,20 @@
+# No idea why it's in sci but we ball.
+- type: job
+  id: StationAi
+  name: job-name-station-ai
+  description: job-description-station-ai
+  playTimeTracker: JobStationAi
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 120 # 15h # Corvax-RoleTime
+  canBeAntag: false
+  icon: JobIconStationAi
+  supervisors: job-supervisors-rd
+  jobEntity: StationAiBrain
+  # start-backmen
+  startingGear: RobotGear # for char preview only
+  # end-backmen
+
 - type: job
   id: Borg
   name: job-name-borg
@@ -5,8 +22,11 @@
   playTimeTracker: JobBorg
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 216000 #60 hrs
+      time: 120 # 60 hrs
   canBeAntag: false
   icon: JobIconBorg
   supervisors: job-supervisors-rd
   jobEntity: PlayerBorgGeneric
+  # start-backmen
+  startingGear: RobotGear # for char preview only
+  # end-backmen

@@ -4,9 +4,8 @@
   description: job-description-doctor
   playTimeTracker: JobMedicalDoctor
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 7200 #2 hrs # Corvax-RoleTime
+  - !type:OverallPlaytimeRequirement
+    time: 120 # 15h # Corvax-RoleTime
   startingGear: DoctorGear
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-cmo

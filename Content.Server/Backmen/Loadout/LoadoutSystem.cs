@@ -17,6 +17,7 @@ public sealed class LoadoutSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly HandsSystem _handsSystem = default!;
     [Dependency] private readonly StorageSystem _storageSystem = default!;
+    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
 
     public override void Initialize()
     {
@@ -25,14 +26,17 @@ public sealed class LoadoutSystem : EntitySystem
 
     private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
     {
-		string[] nums2 = new string[4] { "1", "4", "8", "8" };
+        if (!_sponsorsManager.TryGetServerPrototypes(ev.Player.UserId, out var prototypes))
+            return;
 
-        foreach (var loadoutId in nums2)
+        foreach (var loadoutId in prototypes)
         {
             // NOTE: Now is easy to not extract method because event give all info we need
             if (!_prototypeManager.TryIndex<LoadoutItemPrototype>(loadoutId, out var loadout))
                 continue;
 
+            var isSponsorOnly = loadout.SponsorOnly &&
+                                !prototypes.Contains(loadoutId);
             var isWhitelisted = ev.JobId != null &&
                                 loadout.WhitelistJobs != null &&
                                 !loadout.WhitelistJobs.Contains(ev.JobId);
@@ -42,7 +46,7 @@ public sealed class LoadoutSystem : EntitySystem
             var isSpeciesRestricted = loadout.SpeciesRestrictions != null &&
                                       loadout.SpeciesRestrictions.Contains(ev.Profile.Species);
 
-            if (isWhitelisted || isBlacklisted || isSpeciesRestricted)
+            if (isSponsorOnly || isWhitelisted || isBlacklisted || isSpeciesRestricted)
                 continue;
 
             var entity = Spawn(loadout.EntityId, Transform(ev.Mob).Coordinates);

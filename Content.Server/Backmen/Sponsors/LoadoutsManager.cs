@@ -6,13 +6,20 @@ namespace Content.Server.Backmen.Sponsors;
 
 public sealed class LoadoutsManager : ISharedLoadoutsManager
 {
+    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
 
     public void Initialize()
     {
     }
 
-    public bool TryGetServerPrototypes()
+    public bool TryGetServerPrototypes(NetUserId userId, [NotNullWhen(true)] out List<string>? prototypes)
     {
-		return false;
+        if (!_sponsorsManager.TryGetLoadouts(userId, out prototypes))
+        {
+            prototypes = null;
+            return false;
+        }
+
+        return true;
     }
 }

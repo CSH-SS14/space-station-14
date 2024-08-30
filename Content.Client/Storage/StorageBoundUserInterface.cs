@@ -10,7 +10,7 @@ public sealed class StorageBoundUserInterface : BoundUserInterface
     [Dependency] private readonly IEntityManager _entManager = default!;
 
     private readonly StorageSystem _storage;
-
+	
     public StorageBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         IoCManager.InjectDependencies(this);

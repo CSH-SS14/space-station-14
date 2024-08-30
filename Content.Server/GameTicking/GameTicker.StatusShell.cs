@@ -26,6 +26,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly IConfigurationManager _cfg = default!;
 
         // Corvax-Queue-Start
+        [Dependency] private readonly IServerJoinQueueManager _joinQueueManager = default!;
         // Corvax-Queue-End
 
         /// <summary>
@@ -46,11 +47,13 @@ namespace Content.Server.GameTicking
             lock (_statusShellLock)
             {
                 // Corvax-Queue-Start
+                var players = _joinQueueManager.ActualPlayersCount;
                 // Corvax-Queue-End
 
                 jObject["name"] = _baseServer.ServerName;
                 jObject["map"] = _gameMapManager.GetSelectedMap()?.MapName;
                 jObject["round_id"] = _gameTicker.RoundId;
+                jObject["players"] = players; // Corvax-Queue
                 jObject["soft_max_players"] = _cfg.GetCVar(CCVars.SoftMaxPlayers);
                 jObject["panic_bunker"] = _cfg.GetCVar(CCVars.PanicBunkerEnabled);
 

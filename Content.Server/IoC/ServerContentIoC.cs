@@ -1,5 +1,3 @@
-using Content.Server._Jerry;
-using Content.Server._Jerry.Sponsors;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -7,6 +5,7 @@ using Content.Server.Administration.Notes;
 using Content.Server.Afk;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
+using Content.Server.Corvax.TTS;
 using Content.Server.Database;
 using Content.Server.Discord;
 using Content.Server.EUI;
@@ -61,18 +60,23 @@ namespace Content.Server.IoC
             IoCManager.Register<IAdminLogManager, AdminLogManager>();
             IoCManager.Register<PlayTimeTrackingManager>();
             IoCManager.Register<UserDbDataManager>();
+            IoCManager.Register<TTSManager>(); // Corvax-TTS
             IoCManager.Register<ServerInfoManager>();
             IoCManager.Register<PoissonDiskSampler>();
             IoCManager.Register<DiscordWebhook>();
+
+            // start-backmen: IoC
+            IoCManager.Register<Content.Corvax.Interfaces.Shared.ISharedSponsorsManager, Backmen.Sponsors.SponsorsManager>();
+            IoCManager.Register<Content.Corvax.Interfaces.Server.IServerDiscordAuthManager, Backmen.DiscordAuth.DiscordAuthManager>();
+            IoCManager.Register<Content.Corvax.Interfaces.Server.IServerJoinQueueManager, Backmen.JoinQueue.JoinQueueManager>();
+            IoCManager.Register<Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager, Backmen.Sponsors.LoadoutsManager>();
+            // end-backmen: IoC
             IoCManager.Register<ServerDbEntryManager>();
             IoCManager.Register<ISharedPlaytimeManager, PlayTimeTrackingManager>();
             IoCManager.Register<ServerApi>();
             IoCManager.Register<JobWhitelistManager>();
             IoCManager.Register<PlayerRateLimitManager>();
             IoCManager.Register<MappingManager>();
-
-            IoCManager.Register<DiscordAuthManager>();
-            IoCManager.Register<SponsorsManager>();
         }
     }
 }

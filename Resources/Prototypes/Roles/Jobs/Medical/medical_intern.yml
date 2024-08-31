@@ -6,7 +6,6 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 120 # 15h # Corvax-RoleTime
-      inverted: true # stop playing intern if you're good at med!
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"
   supervisors: job-supervisors-medicine

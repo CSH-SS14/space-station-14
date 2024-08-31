@@ -6,8 +6,6 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 120 # 15h # Corvax-RoleTime
-    - !type:AgeRequirement
-      requiredAge: 21
   weight: 10
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"

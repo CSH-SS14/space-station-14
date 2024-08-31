@@ -28,7 +28,6 @@
         - Borg
     - label: corvax-hidden-desc-Emag-engineering
       jobRequired:
-        - ChiefEngineer
         - AtmosphericTechnician
         - StationEngineer
         - TechnicalAssistant

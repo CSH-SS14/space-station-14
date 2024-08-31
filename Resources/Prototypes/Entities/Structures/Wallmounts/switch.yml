@@ -271,14 +271,6 @@
     access: [["HeadOfPersonnel"]]
 
 - type: entity
-  id: LockableButtonChiefEngineer
-  suffix: ChiefEngineer
-  parent: LockableButton
-  components:
-  - type: AccessReader
-    access: [["ChiefEngineer"]]
-
-- type: entity
   id: LockableButtonChiefMedicalOfficer
   suffix: ChiefMedicalOfficer
   parent: LockableButton

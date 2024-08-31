@@ -57,7 +57,6 @@
             - NukeOperative
       - label: corvax-hidden-desc-PowerSink-engineering
         jobRequired:
-          - ChiefEngineer
           - AtmosphericTechnician
           - StationEngineer
           - TechnicalAssistant

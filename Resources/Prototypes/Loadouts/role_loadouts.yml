@@ -326,26 +326,6 @@
   - Trinkets
   - GroupSpeciesBreathTool
 
-# Engineering
-- type: roleLoadout
-  id: JobChiefEngineer
-  groups:
-  - Inventory # Corvax-Loadouts
-  - Werx #backmen
-  - Niz #backmen
-  - Socks #backmen
-  - GroupTankHarness
-  - ChiefEngineerHead
-  - ChiefEngineerJumpsuit
-  - ChiefEngineerBackpack # Corvax-Loadouts
-  - ChiefEngineerNeck
-  - ChiefEngineerOuterClothing
-  - ChiefEngineerShoes
-  - Medals #backmen
-  - SurvivalExtended
-  - Trinkets
-  - GroupSpeciesBreathTool
-
 - type: roleLoadout
   id: JobTechnicalAssistant
   groups:

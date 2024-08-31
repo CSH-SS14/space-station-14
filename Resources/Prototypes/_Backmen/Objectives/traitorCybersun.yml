@@ -115,8 +115,6 @@
   parent: BaseTraitorStealObjectiveCybersan
   id: MagbootsStealObjectiveCybersan
   components:
-  - type: NotJobRequirement
-    job: ChiefEngineer
   - type: StealCondition
     stealGroup: ClothingShoesBootsMagAdv
     owner: job-name-ce

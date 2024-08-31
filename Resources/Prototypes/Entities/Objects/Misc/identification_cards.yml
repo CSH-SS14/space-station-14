@@ -379,20 +379,6 @@
 
 - type: entity
   parent: IDCardStandard
-  id: CEIDCard
-  name: chief engineer ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: silver
-    - state: idchiefengineer
-  - type: Item
-    heldPrefix: silver
-  - type: PresetIdCard
-    job: ChiefEngineer
-
-- type: entity
-  parent: IDCardStandard
   id: CMOIDCard
   name: chief medical officer ID card
   components:

@@ -56,8 +56,6 @@
         orGroup: SpacemenFig
       - id: ToyFigurineQuartermaster
         orGroup: SpacemenFig
-      - id: ToyFigurineChiefEngineer
-        orGroup: SpacemenFig
       - id: ToyFigurineAtmosTech
         orGroup: SpacemenFig
       - id: ToyFigurineEngineer

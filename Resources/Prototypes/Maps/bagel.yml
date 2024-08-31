@@ -30,7 +30,6 @@
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
             #engineering
-            ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 4, 4 ]
             TechnicalAssistant: [ 4, 4 ]

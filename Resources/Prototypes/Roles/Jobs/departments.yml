@@ -45,7 +45,6 @@
   roles:
   - Captain
   - IAA # Corvax-IAA
-  - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel
   - HeadOfSecurity
@@ -62,7 +61,6 @@
   color: "#EFB341"
   roles:
   - AtmosphericTechnician
-  - ChiefEngineer
   - StationEngineer
   - TechnicalAssistant
   accountNumber: 1318 #backmen: currency

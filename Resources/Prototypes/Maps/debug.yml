@@ -46,6 +46,3 @@
       components:
         - type: StationNameSetup
           mapNameTemplate: "TEG"
-        - type: StationJobs
-          availableJobs:
-            ChiefEngineer: [ -1, -1 ]

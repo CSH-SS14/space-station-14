@@ -26,21 +26,6 @@
       - id: Welder
       - id: Multitool
 
-- type: entity
-  id: ClothingBeltChiefEngineerFilled
-  parent: ClothingBeltChiefEngineer
-  suffix: Filled
-  components:
-  - type: StorageFill
-    contents:
-      - id: PowerDrill
-      - id: JawsOfLife
-      - id: WelderExperimental
-      - id: Multitool
-      - id: HolofanProjector
-      - id: GasAnalyzer
-      - id: trayScanner
-
 - type: entityTable
   id: BeltSecurityEntityTable
   table: !type:AllSelector

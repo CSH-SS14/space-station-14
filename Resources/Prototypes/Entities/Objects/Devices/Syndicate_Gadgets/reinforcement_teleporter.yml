@@ -45,7 +45,6 @@
         - NukeOperative
     - label: corvax-hidden-desc-ReinforcementRadio-engineering
       jobRequired:
-      - ChiefEngineer
       - AtmosphericTechnician
       - StationEngineer
       - TechnicalAssistant
@@ -98,7 +97,6 @@
           - NukeOperative
     - label: corvax-hidden-desc-ReinforcementRadio-engineering
       jobRequired:
-        - ChiefEngineer
         - AtmosphericTechnician
         - StationEngineer
         - TechnicalAssistant
@@ -162,7 +160,6 @@
             - NukeOperative
       - label: corvax-hidden-desc-ReinforcementRadio-engineering
         jobRequired:
-          - ChiefEngineer
           - AtmosphericTechnician
           - StationEngineer
           - TechnicalAssistant

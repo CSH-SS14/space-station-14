@@ -91,28 +91,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/salvage.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband]
-  id: ClothingUniformJumpsuitChiefEngineer
-  name: chief engineer's jumpsuit
-  description: It's a high visibility jumpsuit given to those engineers insane enough to achieve the rank of Chief Engineer.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/ce.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/ce.rsi
-
-- type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband]
-  id: ClothingUniformJumpsuitChiefEngineerTurtle
-  name: chief engineer's turtleneck
-  description: A yellow turtleneck designed specifically for work in conditions of the engineering department.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/ce_turtle.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/ce_turtle.rsi
-
-- type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitChaplain
   name: chaplain's jumpsuit

@@ -247,14 +247,6 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconChiefEngineer
-  icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: ChiefEngineer
-  jobName: job-name-ce
-
-- type: jobIcon
-  parent: JobIcon
   id: JobIconBartender
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi

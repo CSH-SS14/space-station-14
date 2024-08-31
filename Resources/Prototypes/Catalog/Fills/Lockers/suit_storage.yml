@@ -144,19 +144,6 @@
   - type: AccessReader
     access: [["Security"]]
 
-#CE's hardsuit
-- type: entity
-  id: SuitStorageCE
-  parent: SuitStorageBase
-  suffix: Chief Engineer
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: FillChiefEngineerHardsuit
-  - type: AccessReader
-    access: [["ChiefEngineer"]]
-
 #CMO's hardsuit
 - type: entity
   id: SuitStorageCMO

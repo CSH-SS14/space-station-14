@@ -213,17 +213,6 @@
 
 - type: entity
   parent: BaseFigurine
-  id: ToyFigurineChiefEngineer
-  name: chief engineer figure
-  description: A figurine depicting the glorious head of the Engineering department.
-  components:
-  - type: Sprite
-    state: ce
-  - type: SpeakOnUse
-    pack: FigurinesCE
-
-- type: entity
-  parent: BaseFigurine
   id: ToyFigurineEngineer
   name: station engineer figure
   description: A figurine depicting a Station Engineer holding a crowbar at-ready.

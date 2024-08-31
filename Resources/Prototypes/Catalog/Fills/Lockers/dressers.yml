@@ -14,19 +14,6 @@
       - id: ClothingNeckCloakCap
 
 - type: entity
-  id: DresserChiefEngineerFilled
-  parent: Dresser
-  suffix: Filled, Chief Engineer
-  components:
-  - type: StorageFill
-    contents:
-      - id: ClothingUniformJumpsuitChiefEngineerTurtle
-      - id: ClothingUniformJumpskirtChiefEngineerTurtle
-      - id: ClothingHeadHatBeretEngineering
-      - id: ClothingOuterWinterCE
-      - id: ClothingNeckCloakCe
-
-- type: entity
   id: DresserChiefMedicalOfficerFilled
   parent: Dresser
   suffix: Filled, Chief Medical Officer

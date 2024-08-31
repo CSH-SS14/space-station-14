@@ -214,8 +214,6 @@
   parent: BaseTraitorStealObjective
   id: MagbootsStealObjective
   components:
-  - type: NotJobRequirement
-    job: ChiefEngineer
   - type: StealCondition
     stealGroup: ClothingShoesBootsMagAdv
     owner: job-name-ce

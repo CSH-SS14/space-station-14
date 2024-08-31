@@ -86,18 +86,6 @@
     access: [["HeadOfPersonnel"]]
 
 # CE
-- type: entity
-  id: LockerChiefEngineer
-  parent: LockerBaseSecure
-  name: chief engineer's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: ce
-    stateDoorOpen: ce_open
-    stateDoorClosed: ce_door
-  - type: AccessReader
-    access: [ [ "ChiefEngineer" ] ]
 
 # Electrical supplies
 - type: entity

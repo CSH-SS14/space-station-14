@@ -325,18 +325,6 @@
 # Engineering
 
 - type: entity
-  id: SpawnPointChiefEngineer
-  parent: SpawnPointJobBase
-  name: chiefengineer
-  components:
-  - type: SpawnPoint
-    job_id: ChiefEngineer
-  - type: Sprite
-    layers:
-      - state: green
-      - state: ce
-
-- type: entity
   id: SpawnPointStationEngineer
   parent: SpawnPointJobBase
   name: stationengineer

@@ -36,7 +36,6 @@
             #Librarian: [ 1, 1 ] no library :c
             ServiceWorker: [ 3, 3 ]
             #engineering
-            ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 2, 2 ]
             StationEngineer: [ 4, 4 ]
             TechnicalAssistant: [ 3, 3 ]

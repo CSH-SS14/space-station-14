@@ -129,15 +129,6 @@
   - type: AccessReader
     access: [["Cargo"]]
 
-# Engineering
-- type: entity
-  parent: DoorElectronics
-  id: DoorElectronicsChiefEngineer
-  suffix: ChiefEngineer, Locked
-  components:
-  - type: AccessReader
-    access: [["ChiefEngineer"]]
-
 - type: entity
   parent: DoorElectronics
   id: DoorElectronicsAtmospherics

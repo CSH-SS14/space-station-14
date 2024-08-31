@@ -24,7 +24,6 @@
             Captain: [ 1, 1 ]
           #engineering
             AtmosphericTechnician: [ 1, 2 ]
-            ChiefEngineer: [ 1, 1 ]
             StationEngineer: [ 3, 4 ]
             TechnicalAssistant: [ 2, 3 ]
           #medical

@@ -9201,15 +9201,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingBeltChiefEngineerFilled
-  entities:
-  - uid: 3259
-    components:
-    - type: Transform
-      parent: 3023
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingBeltMedicalFilled
   entities:
   - uid: 3261
@@ -18371,50 +18362,6 @@ entities:
     - type: Transform
       pos: 18.5,19.5
       parent: 1
-- proto: LockerChiefEngineer
-  entities:
-  - uid: 3023
-    components:
-    - type: MetaData
-      name: Шкаф инженера ОБР
-    - type: Transform
-      pos: 24.5,22.5
-      parent: 1
-    - type: Lock
-      locked: False
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 2744
-          - 3027
-          - 3259
-          - 3028
-          - 3029
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerChiefMedicalOfficer
   entities:
   - uid: 3022

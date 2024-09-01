@@ -1240,18 +1240,6 @@ entities:
     - type: Transform
       pos: 7.5,-4.5
       parent: 2
-- proto: ClothingBeltChiefEngineerFilled
-  entities:
-  - uid: 332
-    components:
-    - type: Transform
-      pos: -4.699811,5.342529
-      parent: 2
-  - uid: 333
-    components:
-    - type: Transform
-      pos: -4.696474,5.7329693
-      parent: 2
 - proto: ClothingHandsGlovesColorYellow
   entities:
   - uid: 237
@@ -1841,13 +1829,6 @@ entities:
     components:
     - type: Transform
       pos: 8.5,7.5
-      parent: 2
-- proto: LockerChiefEngineerFilledHardsuit
-  entities:
-  - uid: 396
-    components:
-    - type: Transform
-      pos: -4.5,8.5
       parent: 2
 - proto: LockerElectricalSuppliesFilled
   entities:
@@ -2495,13 +2476,6 @@ entities:
       maxCharge: 8E+12
     - type: PowerNetworkBattery
       maxChargeRate: 5E+09
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 145
-    components:
-    - type: Transform
-      pos: 0.5,-0.5
-      parent: 2
 - proto: SpawnPointLatejoin
   entities:
   - uid: 144

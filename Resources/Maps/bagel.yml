@@ -10850,24 +10850,6 @@ entities:
     - type: Transform
       pos: 42.5,-31.5
       parent: 60
-- proto: AirlockChiefEngineerGlassLocked
-  entities:
-  - uid: 6525
-    components:
-    - type: MetaData
-      name: Chief Engineer's Office
-    - type: Transform
-      pos: 7.5,19.5
-      parent: 60
-- proto: AirlockChiefEngineerLocked
-  entities:
-  - uid: 6530
-    components:
-    - type: MetaData
-      name: Chief Engineer's Room
-    - type: Transform
-      pos: 11.5,19.5
-      parent: 60
 - proto: AirlockChiefMedicalOfficerLocked
   entities:
   - uid: 74
@@ -67806,13 +67788,6 @@ entities:
     - type: Transform
       pos: -7.5,-6.5
       parent: 60
-- proto: DresserChiefEngineerFilled
-  entities:
-  - uid: 944
-    components:
-    - type: Transform
-      pos: 13.5,17.5
-      parent: 60
 - proto: DresserChiefMedicalOfficerFilled
   entities:
   - uid: 13100
@@ -107915,13 +107890,6 @@ entities:
     - type: Transform
       pos: 40.5,-32.5
       parent: 60
-- proto: LockerChiefEngineerFilled
-  entities:
-  - uid: 1964
-    components:
-    - type: Transform
-      pos: 13.5,18.5
-      parent: 60
 - proto: LockerChiefMedicalOfficerFilledHardsuit
   entities:
   - uid: 6647
@@ -128607,13 +128575,6 @@ entities:
     components:
     - type: Transform
       pos: 39.5,-30.5
-      parent: 60
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 6540
-    components:
-    - type: Transform
-      pos: 12.5,19.5
       parent: 60
 - proto: SpawnPointChiefMedicalOfficer
   entities:

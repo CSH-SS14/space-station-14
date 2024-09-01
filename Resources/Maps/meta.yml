@@ -10326,13 +10326,6 @@ entities:
     - type: Transform
       pos: -20.5,-28.5
       parent: 5350
-- proto: AirlockChiefEngineerLocked
-  entities:
-  - uid: 8976
-    components:
-    - type: Transform
-      pos: 47.5,11.5
-      parent: 5350
 - proto: AirlockChiefMedicalOfficerLocked
   entities:
   - uid: 507
@@ -70143,13 +70136,6 @@ entities:
     - type: Transform
       pos: 13.5,6.5
       parent: 5350
-- proto: DresserChiefEngineerFilled
-  entities:
-  - uid: 1482
-    components:
-    - type: Transform
-      pos: 45.5,6.5
-      parent: 5350
 - proto: DresserChiefMedicalOfficerFilled
   entities:
   - uid: 1506
@@ -116664,31 +116650,6 @@ entities:
     - type: Transform
       pos: -19.5,-22.5
       parent: 5350
-- proto: LockerChiefEngineerFilled
-  entities:
-  - uid: 9051
-    components:
-    - type: Transform
-      pos: 47.5,6.5
-      parent: 5350
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1495
-        moles:
-        - 3.848459
-        - 14.477538
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
 - proto: LockerChiefMedicalOfficerFilled
   entities:
   - uid: 14895
@@ -136912,13 +136873,6 @@ entities:
     components:
     - type: Transform
       pos: -19.5,-26.5
-      parent: 5350
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 24031
-    components:
-    - type: Transform
-      pos: 45.5,8.5
       parent: 5350
 - proto: SpawnPointChiefMedicalOfficer
   entities:

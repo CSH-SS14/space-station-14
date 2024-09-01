@@ -13894,19 +13894,6 @@ entities:
     - type: Transform
       pos: 41.5,5.5
       parent: 2
-- proto: AirlockChiefEngineerLocked
-  entities:
-  - uid: 191
-    components:
-    - type: Transform
-      pos: 76.5,17.5
-      parent: 2
-  - uid: 16405
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 39.5,65.5
-      parent: 2
 - proto: AirlockChiefMedicalOfficerGlassLocked
   entities:
   - uid: 194
@@ -65469,13 +65456,6 @@ entities:
     - type: Transform
       pos: 25.5,20.5
       parent: 2
-- proto: DresserChiefEngineerFilled
-  entities:
-  - uid: 12729
-    components:
-    - type: Transform
-      pos: 38.5,66.5
-      parent: 2
 - proto: DresserChiefMedicalOfficerFilled
   entities:
   - uid: 5653
@@ -97028,13 +97008,6 @@ entities:
     - type: Transform
       pos: 44.5,9.5
       parent: 2
-- proto: LockerChiefEngineerFilled
-  entities:
-  - uid: 14600
-    components:
-    - type: Transform
-      pos: 40.5,67.5
-      parent: 2
 - proto: LockerChiefMedicalOfficerFilledHardsuit
   entities:
   - uid: 10638
@@ -115490,13 +115463,6 @@ entities:
     components:
     - type: Transform
       pos: 41.5,10.5
-      parent: 2
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 16595
-    components:
-    - type: Transform
-      pos: 40.5,62.5
       parent: 2
 - proto: SpawnPointChiefMedicalOfficer
   entities:

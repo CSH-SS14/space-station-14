@@ -821,13 +821,6 @@ entities:
     - type: Transform
       pos: -0.5,12.5
       parent: 1
-- proto: AirlockChiefEngineerLocked
-  entities:
-  - uid: 15
-    components:
-    - type: Transform
-      pos: -7.5,-7.5
-      parent: 1
 - proto: AirlockEngineeringLocked
   entities:
   - uid: 42

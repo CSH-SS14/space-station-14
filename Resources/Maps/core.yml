@@ -14254,26 +14254,6 @@ entities:
     - type: Transform
       pos: 48.5,13.5
       parent: 2
-- proto: AirlockChiefEngineerGlassLocked
-  entities:
-  - uid: 15
-    components:
-    - type: MetaData
-      name: CE's office airlock
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -1.5,-24.5
-      parent: 2
-- proto: AirlockChiefEngineerLocked
-  entities:
-  - uid: 16
-    components:
-    - type: MetaData
-      name: CE's room airlock
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,-26.5
-      parent: 2
 - proto: AirlockChiefMedicalOfficerGlassLocked
   entities:
   - uid: 6693
@@ -69181,13 +69161,6 @@ entities:
     - type: Transform
       pos: 45.5,-29.5
       parent: 2
-- proto: DresserChiefEngineerFilled
-  entities:
-  - uid: 3122
-    components:
-    - type: Transform
-      pos: 2.5,-25.5
-      parent: 2
 - proto: DresserChiefMedicalOfficerFilled
   entities:
   - uid: 5280
@@ -103422,42 +103395,6 @@ entities:
     - type: Transform
       pos: 47.5,14.5
       parent: 2
-- proto: LockerChiefEngineerFilled
-  entities:
-  - uid: 1486
-    components:
-    - type: Transform
-      pos: -0.5,-25.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 4464
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerChiefMedicalOfficerFilled
   entities:
   - uid: 6741
@@ -120816,13 +120753,6 @@ entities:
     components:
     - type: Transform
       pos: 46.5,12.5
-      parent: 2
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 2120
-    components:
-    - type: Transform
-      pos: 3.5,-26.5
       parent: 2
 - proto: SpawnPointChiefMedicalOfficer
   entities:

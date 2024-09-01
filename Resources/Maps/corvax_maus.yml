@@ -14829,14 +14829,6 @@ entities:
     - type: Transform
       pos: -53.5,-41.5
       parent: 2
-- proto: AirlockChiefEngineerLocked
-  entities:
-  - uid: 160
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -54.5,-17.5
-      parent: 2
 - proto: AirlockChiefMedicalOfficerLocked
   entities:
   - uid: 7352
@@ -51980,14 +51972,6 @@ entities:
       parent: 6737
     - type: Physics
       canCollide: False
-- proto: ClothingUniformJumpsuitChiefEngineerTurtle
-  entities:
-  - uid: 19925
-    components:
-    - type: Transform
-      parent: 19921
-    - type: Physics
-      canCollide: False
 - proto: ClothingUniformJumpsuitColorWhite
   entities:
   - uid: 11401
@@ -58771,13 +58755,6 @@ entities:
     components:
     - type: Transform
       pos: -36.5,-11.5
-      parent: 2
-- proto: DresserChiefEngineerFilled
-  entities:
-  - uid: 15467
-    components:
-    - type: Transform
-      pos: -53.5,-19.5
       parent: 2
 - proto: DresserChiefMedicalOfficerFilled
   entities:
@@ -87496,43 +87473,6 @@ entities:
     - type: Transform
       pos: -51.5,-39.5
       parent: 2
-- proto: LockerChiefEngineerFilled
-  entities:
-  - uid: 11189
-    components:
-    - type: Transform
-      pos: -52.5,-14.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-        - 1.8978093
-        - 7.139378
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 11591
-          - 3249
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerChiefMedicalOfficerFilled
   entities:
   - uid: 10022
@@ -105284,13 +105224,6 @@ entities:
     components:
     - type: Transform
       pos: -49.5,-40.5
-      parent: 2
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 1981
-    components:
-    - type: Transform
-      pos: -52.5,-18.5
       parent: 2
 - proto: SpawnPointChiefMedicalOfficer
   entities:

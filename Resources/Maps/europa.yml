@@ -4612,25 +4612,6 @@ entities:
     - type: Transform
       pos: 18.5,45.5
       parent: 1
-- proto: AirlockChiefEngineerLocked
-  entities:
-  - uid: 2649
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -29.5,-9.5
-      parent: 1
-  - uid: 2685
-    components:
-    - type: Transform
-      pos: -20.5,-13.5
-      parent: 1
-  - uid: 2718
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -19.5,-17.5
-      parent: 1
 - proto: AirlockChiefMedicalOfficerGlassLocked
   entities:
   - uid: 3585
@@ -55033,42 +55014,6 @@ entities:
     - type: Transform
       pos: 22.5,43.5
       parent: 1
-- proto: LockerChiefEngineerFilled
-  entities:
-  - uid: 3312
-    components:
-    - type: Transform
-      pos: -20.5,-20.5
-      parent: 1
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 1.7459823
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 3313
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerChiefMedicalOfficerFilled
   entities:
   - uid: 3036
@@ -64285,13 +64230,6 @@ entities:
     components:
     - type: Transform
       pos: 18.5,42.5
-      parent: 1
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 3321
-    components:
-    - type: Transform
-      pos: -17.5,-19.5
       parent: 1
 - proto: SpawnPointChiefMedicalOfficer
   entities:

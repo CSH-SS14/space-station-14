@@ -25178,18 +25178,6 @@ entities:
     - type: Transform
       pos: 34.5,-51.5
       parent: 1882
-- proto: LockerChiefEngineerFilled
-  entities:
-  - uid: 370
-    components:
-    - type: Transform
-      pos: -3.5,6.5
-      parent: 2
-  - uid: 1222
-    components:
-    - type: Transform
-      pos: -3.5,6.5
-      parent: 602
 - proto: LockerMedical
   entities:
   - uid: 1972

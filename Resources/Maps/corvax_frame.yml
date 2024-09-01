@@ -10371,43 +10371,6 @@ entities:
     - type: Transform
       pos: -9.5,18.5
       parent: 183
-- proto: LockerChiefEngineerFilledHardsuit
-  entities:
-  - uid: 1100
-    components:
-    - type: Transform
-      pos: 7.5,11.5
-      parent: 183
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 2077
-          - 1258
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerClown
   entities:
   - uid: 978
@@ -12634,13 +12597,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,9.5
-      parent: 183
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 1580
-    components:
-    - type: Transform
-      pos: 7.5,12.5
       parent: 183
 - proto: SpawnPointClown
   entities:

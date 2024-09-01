@@ -18827,13 +18827,6 @@ entities:
     - type: Transform
       pos: -4.4003854,-15.343687
       parent: 1668
-- proto: ClothingBeltChiefEngineerFilled
-  entities:
-  - uid: 7398
-    components:
-    - type: Transform
-      pos: 29.52513,-30.339495
-      parent: 1668
 - proto: ClothingBeltRapier
   entities:
   - uid: 7655
@@ -33007,18 +33000,6 @@ entities:
     components:
     - type: Transform
       pos: -9.5,19.5
-      parent: 1668
-- proto: LockerChiefEngineerFilledHardsuit
-  entities:
-  - uid: 5253
-    components:
-    - type: Transform
-      pos: -15.5,-3.5
-      parent: 1668
-  - uid: 5420
-    components:
-    - type: Transform
-      pos: -14.5,-3.5
       parent: 1668
 - proto: LockerChiefMedicalOfficerFilledHardsuit
   entities:

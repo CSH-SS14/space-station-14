@@ -5749,13 +5749,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -14.5,15.5
       parent: 1
-- proto: AirlockChiefEngineerGlassLocked
-  entities:
-  - uid: 3344
-    components:
-    - type: Transform
-      pos: 16.5,-12.5
-      parent: 1
 - proto: AirlockChiefMedicalOfficerLocked
   entities:
   - uid: 3399
@@ -32612,13 +32605,6 @@ entities:
     - type: Transform
       pos: 4.5,31.5
       parent: 1
-- proto: DresserChiefEngineerFilled
-  entities:
-  - uid: 5659
-    components:
-    - type: Transform
-      pos: 20.5,-14.5
-      parent: 1
 - proto: DresserChiefMedicalOfficerFilled
   entities:
   - uid: 5657
@@ -55849,13 +55835,6 @@ entities:
     - type: Transform
       pos: -13.5,13.5
       parent: 1
-- proto: LockerChiefEngineerFilled
-  entities:
-  - uid: 5658
-    components:
-    - type: Transform
-      pos: 20.5,-13.5
-      parent: 1
 - proto: LockerChiefMedicalOfficerFilled
   entities:
   - uid: 1867
@@ -66947,13 +66926,6 @@ entities:
     components:
     - type: Transform
       pos: -11.5,14.5
-      parent: 1
-- proto: SpawnPointChiefEngineer
-  entities:
-  - uid: 7279
-    components:
-    - type: Transform
-      pos: 19.5,-14.5
       parent: 1
 - proto: SpawnPointChiefMedicalOfficer
   entities:

@@ -6964,13 +6964,6 @@ entities:
     - type: Transform
       pos: 14.5,29.5
       parent: 2
-- proto: AirlockChiefEngineerLocked
-  entities:
-  - uid: 162
-    components:
-    - type: Transform
-      pos: 67.5,14.5
-      parent: 2
 - proto: AirlockCommand
   entities:
   - uid: 163
@@ -20044,15 +20037,6 @@ entities:
           - 2534
           - 2532
           - 2533
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingBeltChiefEngineerFilled
-  entities:
-  - uid: 2551
-    components:
-    - type: Transform
-      parent: 2550
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage

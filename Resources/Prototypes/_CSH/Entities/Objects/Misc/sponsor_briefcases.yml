@@ -59,7 +59,7 @@
       contents:
         - id: LightImplanter
         - id: StorageImplanter
-        - id: EnergyDomeGeneratorPersonalNT
+        - id: EnergyShield
         - id: FreedomImplanter
 
 - type: bkmloadout

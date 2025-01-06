@@ -1,0 +1,68 @@
+- type: entity
+  parent: Briefcase
+  id: BriefcaseSponsor
+  components:
+    - type: Sprite
+      sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+      state: icon
+    - type: Item
+      sprite: Objects/Storage/Briefcases/briefcase_brown.rsi
+    - type: Storage
+      grid:
+      - 0,0,9,5 # TODO: Change this
+      maxItemSize: Huge
+
+- type: entity
+  parent: BriefcaseSponsor
+  id: BriefcaseBoosty
+  name: Бусти кейс
+  description: Кейс спонсора с подпиской Бусти
+  components:
+    - type: StorageFill
+      contents:
+        - id: LightImplanter
+        - id: RGBStaff
+        - id: PresentRandom
+        - id: Flash
+
+- type: bkmloadout
+  id: BriefcaseBoosty
+  entity: BriefcaseBoosty
+  sponsorOnly: true
+  
+  
+- type: entity
+  parent: BriefcaseSponsor
+  id: BriefcaseBoostyPlus
+  name: Бусти+ Кейс
+  description: Кейс спонсора с подпиской Бусти+
+  components:
+    - type: StorageFill
+      contents:
+        - id: LightImplanter
+        - id: RGBStaff
+        - id: PresentRandom
+        - id: StorageImplanter
+
+- type: bkmloadout
+  id: BriefcaseBoostyPlus
+  entity: BriefcaseBoostyPlus
+  sponsorOnly: true
+
+- type: entity
+  parent: BriefcaseSponsor
+  id: BriefcaseBoostyPlusPlus
+  name: Бусти++ Кейс
+  description: Кейс спонсора с подпиской Бусти++
+  components:
+    - type: StorageFill
+      contents:
+        - id: LightImplanter
+        - id: StorageImplanter
+        - id: EnergyDomeGeneratorPersonalNT
+        - id: FreedomImplanter
+
+- type: bkmloadout
+  id: BriefcaseBoostyPlusPlus
+  entity: BriefcaseBoostyPlusPlus
+  sponsorOnly: true
